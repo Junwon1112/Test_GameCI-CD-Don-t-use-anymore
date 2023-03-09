@@ -1,0 +1,46 @@
+name: Release project
+
+on:
+  workflow_run:
+    workflows:
+      - "Build project"
+    branches:
+      - main
+    types:
+      - completed
+
+jobs:
+  buildForAllSupportedPlatforms:
+    name: Release for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows # Build a Windows standalone.
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/download-artifact@v2
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.repository.releases_url }}/assets?name=Build-${{ matrix.targetPlatform }}.zip
+          asset_path: build/${{ matrix.targetPlatform }}/StandaloneWindows64.zip
+          asset_name: StandaloneWindows64.zip
+          asset_content_type: application/zip
