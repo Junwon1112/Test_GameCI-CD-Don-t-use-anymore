@@ -3,7 +3,7 @@ name: Release project
 on:
   workflow_run:
     workflows:
-      - 'Build and Release'
+      - 'Build project'
     branches:
       - 'release/release-*'
     types:
