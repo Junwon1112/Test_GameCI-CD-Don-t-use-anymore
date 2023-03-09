@@ -2,7 +2,7 @@ name: Build project
 
 on: 
   branches: 
-    - main
+    - realease-*
 
 jobs:
   buildForAllSupportedPlatforms:

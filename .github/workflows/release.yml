@@ -5,7 +5,7 @@ on:
     workflows:
       - "Build project"
     branches:
-      - main
+      - realease-*
     types:
       - completed
 
