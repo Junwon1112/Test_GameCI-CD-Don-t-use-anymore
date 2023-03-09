@@ -5,6 +5,7 @@ on:
     branches: 
       - realease-*
 
+
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
