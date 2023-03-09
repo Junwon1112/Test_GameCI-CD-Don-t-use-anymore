@@ -1,9 +1,9 @@
 name: Build project
 
-on: 
+on:
   push:
-    branches: 
-      - realease-*
+    branches:
+      - 'release/release-*'
 
 
 jobs:

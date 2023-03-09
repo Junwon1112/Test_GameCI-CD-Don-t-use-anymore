@@ -3,9 +3,9 @@ name: Release project
 on:
   workflow_run:
     workflows:
-      - "Build project"
+      - 'Build and Release'
     branches:
-      - realease-*
+      - 'release/release-*'
     types:
       - completed
 
