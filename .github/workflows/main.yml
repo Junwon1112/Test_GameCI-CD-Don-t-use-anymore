@@ -1,8 +1,9 @@
 name: Build project
 
 on: 
-  branches: 
-    - realease-*
+  push:
+    branches: 
+      - realease-*
 
 jobs:
   buildForAllSupportedPlatforms:
