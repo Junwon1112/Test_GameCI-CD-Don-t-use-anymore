@@ -24,11 +24,14 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/download-workflow-artifact@v2
+      - uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: 'Build project.yml'
+          workflow_conclusion: success
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+          if_no_artifact_found: fail
       - uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
