@@ -28,7 +28,7 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-          workflow: 'Build project'
+          workflow: main.yml
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/create-release@v1
         env:
