@@ -26,6 +26,7 @@ jobs:
           lfs: true
       - uses: actions/download-workflow-artifact@v2
         with:
+          workflow: 'Build project.yml'
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
       - uses: actions/create-release@v1
