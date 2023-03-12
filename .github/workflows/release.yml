@@ -24,10 +24,11 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+          workflow: 'Build project'
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/create-release@v1
         env:
