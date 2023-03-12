@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
