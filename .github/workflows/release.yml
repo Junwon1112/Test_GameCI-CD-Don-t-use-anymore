@@ -44,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{ github.event.repository.releases_url }}/assets?name=Build-${{ matrix.targetPlatform }}.zip
-          asset_path: build/${{ matrix.targetPlatform }}/StandaloneWindows64.zip
-          asset_name: StandaloneWindows64.zip
+          asset_path: build/${{ matrix.targetPlatform }}.zip
+          asset_name: StandaloneWindows.zip
           asset_content_type: application/zip
