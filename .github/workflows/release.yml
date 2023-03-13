@@ -34,9 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: ${{ github.ref }}-T_6
-          release_name: Release ${{ github.ref }} - T_6
-          body: Release ${{ github.ref }} - T_6
+          tag_name: ${{ github.ref }}-T_7
+          release_name: Release ${{ github.ref }} - T_7
+          body: Release ${{ github.ref }} - T_7
           draft: false
           prerelease: false
       - uses: actions/upload-release-asset@v1
