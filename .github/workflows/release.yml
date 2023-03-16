@@ -39,16 +39,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: ${{ github.ref }}-T_26
-          release_name: Release ${{ github.ref }} - T_26
-          body: Release ${{ github.ref }} - T_26
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Release ${{ github.ref }}
           draft: false
           prerelease: false
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}releases/${{ github.event.release.id }}/assets?name=StandaloneWindows.zip
+          upload_url: https://uploads.github.com/repos/${{ github.repository }}releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
           asset_path: Build-${{ matrix.targetPlatform }}.zip
           asset_name: ${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
