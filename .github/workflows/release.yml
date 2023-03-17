@@ -72,7 +72,7 @@ jobs:
                       #https://uploads.github.com/repos/${{ github.repository }}releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
                       #https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
                       #${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/${{ matrix.targetPlatform }}.zip
+          asset_path: build/${{ matrix.targetPlatform }}/Build-${{ matrix.targetPlatform }}.zip
                       #Build-${{ matrix.targetPlatform }}.zip
           asset_name: ${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
