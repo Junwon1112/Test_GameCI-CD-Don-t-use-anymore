@@ -31,9 +31,9 @@ jobs:
           workflow: main.yml
           github_token: ${{ secrets.GITHUB_TOKEN }}
           
-      - run: ls -FlasR "build/${{ matrix.targetPlatform }}"
+      #- run: ls -FlasR "build/${{ matrix.targetPlatform }}"
           
-      - run: zip -r "Build-${{ matrix.targetPlatform }}.zip" "build/${{ matrix.targetPlatform }}"
+      #- run: zip -r "Build-${{ matrix.targetPlatform }}.zip" "build/${{ matrix.targetPlatform }}"
           
   Createrelease:
       name: create release for upload
