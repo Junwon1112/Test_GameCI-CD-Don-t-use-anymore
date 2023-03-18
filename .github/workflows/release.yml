@@ -44,9 +44,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: ${{ github.ref }}_T_V20
-          release_name: Release ${{ github.ref }}_T_V20
-          body: Release ${{ github.ref }}_T_V20
+          tag_name: ${{ github.ref }}_T_V21
+          release_name: Release ${{ github.ref }}_T_V21
+          body: Release ${{ github.ref }}_T_V21
           draft: false
           prerelease: false
 
@@ -56,6 +56,8 @@ jobs:
           echo "Now PWD"
           pwd
           ls -al ./build
+          echo "fuck you"
+          ls -al ./build/${{ matrix.targetPlatform }}
         shell: bash
         
       - name: Upload asset to release
@@ -64,6 +66,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/Build-${{ matrix.targetPlatform }}.zip
+          asset_path: build/${{ matrix.targetPlatform }}/
           asset_name: Build-${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
