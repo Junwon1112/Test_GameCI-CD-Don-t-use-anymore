@@ -19,6 +19,8 @@ jobs:
       matrix:
         targetPlatform:
           - StandaloneWindows # Build a Windows standalone.
+    outputs:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -31,11 +33,14 @@ jobs:
           workflow: main.yml
           github_token: ${{ secrets.GITHUB_TOKEN }}
           
-      - run: ls -FlasR "build/${{ matrix.targetPlatform }}"
+      #- run: ls -FlasR "build/${{ matrix.targetPlatform }}"
           
-      - run: zip -r "Build-${{ matrix.targetPlatform }}.zip" "build/${{ matrix.targetPlatform }}"
+      - run: zip -r "build/Build-${{ matrix.targetPlatform }}.zip" "build/${{ matrix.targetPlatform }}"
           
-      - uses: actions/create-release@v1
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
@@ -44,11 +49,25 @@ jobs:
           body: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - uses: actions/upload-release-asset@v1
+
+      - name: list up
+        run: |
+          ls -al
+          echo "Now PWD"
+          pwd
+          ls -al ./build
+          echo "fuck you"
+          ls -al ./build/${{ matrix.targetPlatform }}
+          echo "asdf"
+          echo ${{ steps.create_release.outputs.upload_url }}
+        shell: bash
+        
+      - name: Upload asset to release
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
-          asset_path: Build-${{ matrix.targetPlatform }}.zip
-          asset_name: ${{ matrix.targetPlatform }}.zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/Build-${{ matrix.targetPlatform }}.zip
+          asset_name: Build-${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
