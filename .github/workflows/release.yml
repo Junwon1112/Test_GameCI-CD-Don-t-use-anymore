@@ -48,9 +48,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: ${{ github.ref }}_T_V13
-          release_name: Release ${{ github.ref }}_T_V13
-          body: Release ${{ github.ref }}_T_V13
+          tag_name: ${{ github.ref }}_T_V14
+          release_name: Release ${{ github.ref }}_T_V14
+          body: Release ${{ github.ref }}_T_V14
           draft: false
           prerelease: false
           
@@ -72,7 +72,7 @@ jobs:
                       #https://uploads.github.com/repos/${{ github.repository }}releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
                       #https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets?name=Build-StandaloneWindows.zip
                       #${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/Build-${{ matrix.targetPlatform }}.zip
+          asset_path: ./build/Build-${{ matrix.targetPlatform }}.zip
                       #Build-${{ matrix.targetPlatform }}.zip
           asset_name: ${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
